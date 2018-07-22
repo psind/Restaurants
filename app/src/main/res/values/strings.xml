@@ -16,6 +16,8 @@
     <string name="address">Address : </string>
     <string name="rating">Rating : </string>
     <string name="no_restaurants_available">No Restaurants Available. Please Try Again.</string>
+    <string name="unable_to_fetch_location">Unable to fetch Location</string>
+    <string name="unable_to_connect_to_google">Unable to connect to Google Services</string>
     <string-array name="restaurant_type_list">
         <item>Bar</item>
         <item>Bakery</item>

@@ -144,15 +144,13 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
 
                         }
                         LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
-                            Toast.makeText(this, "Unable to fetch Location", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.unable_to_fetch_location), Toast.LENGTH_LONG).show()
                             progressBar?.visibility = GONE
                         }
                     }
                 }
             }
         } catch (e: Exception) {
-//            Tracer.error(e)
-//            CustomToast.showLongToast(this, getString(R.string.unable_to_fetch_location))
         }
 
     }
@@ -186,14 +184,13 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
 
                 override fun onPostExecute(address: Address?) {
                     try {
+                        progressBar?.visibility = GONE
 //                        ProgressHelper.hideProgressDialog()
                         if (address != null) {
                             onLocationSelected(address, address.getAddressLine(0))
                         } else {
-//                            CustomToast.showLongToast(this, getString(R.string.unable_to_fetch_location))
                         }
                     } catch (ignored: Exception) {
-//                            CustomToast.showLongToast(this, getString(R.string.unable_to_fetch_location))
                     }
 
                 }
@@ -268,6 +265,7 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
          The adapter stores each Place suggestion in a AutocompletePrediction from which we
          read the place ID and title.
           */
+        progressBar?.visibility = GONE
         val item = placeAutocompleteAdapter?.getItem(position)
         Utils.hideKeyBoard(this)
         onLocationSelected(null, item?.getFullText(null).toString())
@@ -276,8 +274,9 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
 
     private fun onLocationSelected(address: Address?, cityName: String) {
         val intent = Intent()
+
         intent.putExtra(Utils.ADDRESS_NAME, cityName)
-        intent.putExtra(Utils.LANG_LANT, "${address?.latitude},${address?.longitude}")
+        intent.putExtra(Utils.LANG_LAT, "${address?.latitude},${address?.longitude}")
         setResult(Utils.LOCATION_CODE, intent)
         finish()
     }
@@ -289,6 +288,7 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
     }
 
     private fun getCurrentLocation() {
+        progressBar?.visibility = VISIBLE
         if (locationManager == null)
             locationManager = this.getSystemService(LOCATION_SERVICE) as LocationManager?
 
@@ -349,7 +349,7 @@ class LocationPickerActivity : AppCompatActivity(), GoogleApiClient.OnConnection
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
-        Toast.makeText(this, "Unable to connect to Google Services", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.unable_to_connect_to_google), Toast.LENGTH_LONG).show()
     }
 
     private var locationListener: LocationListener = object : LocationListener {

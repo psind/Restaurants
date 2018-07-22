@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -56,6 +55,9 @@ class SearchTabFragment : Fragment() {
                 if (p0?.length ?: 0 > 2) {
                     searchText = p0.toString()
                     getRestaurantsList()
+                } else if(p0?.length ?: 0 ==0){
+                    searchText = getString(R.string.app_name)
+                    getRestaurantsList()
                 }
             }
 
@@ -95,11 +97,9 @@ class SearchTabFragment : Fragment() {
                                     restaurantsRV?.visibility = GONE
                                     noRestaurantTV?.visibility = VISIBLE
                                 }
-                                Log.i("Places Response", result.toString())
                             },
                             { error ->
                                 progressBar?.visibility = View.GONE
-                                Log.i("Places Error", error.message)
                             }
                     )
         } else {

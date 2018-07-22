@@ -129,7 +129,7 @@ internal class PlaceAutocompleteAdapter(context: Context, private val mGoogleApi
             // Confirm that the query completed successfully, otherwise return null
             val status = autocompletePredictions.status
             if (!status.isSuccess) {
-                Toast.makeText(context, "Error contacting API: " + status.toString(), Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Error contacting API: " + status.toString(), Toast.LENGTH_SHORT).show()
                 autocompletePredictions.release()
                 return null
             }

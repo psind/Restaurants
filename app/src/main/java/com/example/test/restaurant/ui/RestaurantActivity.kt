@@ -19,7 +19,6 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.example.test.restaurant.data.DialogListener
 import com.example.test.restaurant.R
 import com.example.test.restaurant.data.Utils
@@ -77,16 +76,15 @@ class RestaurantActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Utils.LOCATION_CODE) {
-            latitudeAndLongitude = data?.getStringExtra(Utils.LANG_LANT) ?: ""
+            latitudeAndLongitude = data?.getStringExtra(Utils.LANG_LAT) ?: ""
             address = data?.getStringExtra(Utils.ADDRESS_NAME) ?: ""
-            Toast.makeText(this, data.toString(), Toast.LENGTH_LONG).show()
         }
     }
-
+    // Default location delhi
     fun getLongAndLat(): String = if (!TextUtils.isEmpty(latitudeAndLongitude)) latitudeAndLongitude
                                     else "28.592140,77.046051"
 
-
+    // Default location delhi
     fun getAddress(): String = if (!TextUtils.isEmpty(address)) address
                                 else "Delhi, India"
 

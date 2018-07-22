@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -74,11 +73,10 @@ class ExploreTabFragment : Fragment() {
                                     restaurantsRV?.visibility = GONE
                                     noRestaurantTV?.visibility = VISIBLE
                                 }
-                                Log.i("Places Response", result.toString())
                             },
                             { error ->
+                                noRestaurantTV?.visibility = VISIBLE
                                 progressBar?.visibility = GONE
-                                Log.i("Places Error", error.message)
                             }
                     )
         } else {
@@ -144,8 +142,7 @@ class ExploreTabFragment : Fragment() {
             if (!TextUtils.isEmpty(item.name))
                 holder.view.nameTV?.text = item.name
 
-            if (!TextUtils.isEmpty(item.icon) && activity != null
-                    && holder.view.restaurantThumbIV != null) {
+            if (!TextUtils.isEmpty(item.icon) && activity != null && holder.view.restaurantThumbIV != null) {
                 Glide.with(activity!!).load(item.icon)
                         .into(holder.view.restaurantThumbIV)
             } else {

@@ -27,12 +27,9 @@ open class Utils {
 
         //Constants
         val LOCATION_CODE = 2
-        val INTENT_CODE = 3
         val GOOGLE_PLACES_KEY = "AIzaSyAzPtDFZwfjtAmBiIbfGktnfM7RLtFv2dY"
-        val LANG_LANT = "location"
-        val PLACES_FIELDS = "photos,formatted_address,name,rating,opening_hours,geometry"
+        val LANG_LAT = "location"
         val ADDRESS_NAME = "address"
-        val TEXT_QUERY = "textquery"
 
         fun showSnackBar(context: Context?, snackBarListener: SnackBarListener?, message: String, coordinatorLayout: View,
                          showAction: Boolean) {
