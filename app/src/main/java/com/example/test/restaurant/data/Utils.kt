@@ -27,7 +27,8 @@ open class Utils {
 
         //Constants
         val LOCATION_CODE = 2
-        val GOOGLE_PLACES_KEY = "AIzaSyAzPtDFZwfjtAmBiIbfGktnfM7RLtFv2dY"
+        //Add your key here
+        val GOOGLE_PLACES_KEY = ""
         val LANG_LAT = "location"
         val ADDRESS_NAME = "address"
 
